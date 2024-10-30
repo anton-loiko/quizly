@@ -1,0 +1,44 @@
+.alert {
+  position: relative;
+  border-radius: 4px;
+  padding: 0.8rem 2rem 0.8rem 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: inherit;
+  border: 1px dashed;
+  box-shadow: 1px 2px 12px 1px rgba(0, 0, 0, 0.3);
+  color: var(--second-color);
+}
+
+.close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.6rem;
+  color: var(--second-color);
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert.danger {
+  border-color: #f44336;
+  background-color: #f44336;
+}
+
+.alert.success {
+  border-color: #04aa6d;
+  background-color: #04aa6d;
+}
+
+.alert.info {
+  border-color: #2196f3;
+  background-color: #2196f3;
+}
+
+.alert.warning {
+  border-color: #ff9800;
+  background-color: #ff9800;
+}

@@ -1,0 +1,18 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  text-transform: uppercase;
+  justify-content: space-between;
+  min-width: 14rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}

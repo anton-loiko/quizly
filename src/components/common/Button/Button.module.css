@@ -1,0 +1,29 @@
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--second-color);
+  color: var(--main-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.button:hover {
+  border-color: #646cff;
+}
+
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  background: rgb(182, 182, 182);
+  outline: none;
+  border: none;
+  color: var(--second-color);
+}
