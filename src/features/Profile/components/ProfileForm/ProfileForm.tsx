@@ -6,11 +6,10 @@ import { Box } from "../../../../components/common/Box"
 import { cls } from "../../../../utils/classnames"
 import { Typo } from "../../../../components/common/Typo"
 
-export type ProfileFormProps = PropsWithClassName<{
+type ProfileFormProps = PropsWithClassName<{
   name: string
   options: Topic[]
   topics: Topic[]
-  onlyUnfilled?: boolean
   onNameChange: (value: string) => void
   onSelect: (value: Topic) => void
   onUnselect: (value: Topic) => void

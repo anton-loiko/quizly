@@ -22,7 +22,7 @@ export const QuizPage: React.FC = () => {
         Quiz Page
       </Typo>
 
-      {data?.unfilled ? <Profile onlyUnfilled /> : <Quiz />}
+      {data?.unfilled ? <Profile /> : <Quiz />}
     </>
   )
 }
