@@ -6,23 +6,31 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
   questions: [],
   topics: [],
   currentQuestionIndex: 0,
-  currentAnswerIndex: 0,
+  currentAnswerId: 0,
+  resetState: () =>
+    set((state) => ({
+      ...state,
+      score: 0,
+      questions: [],
+      topics: [],
+      currentQuestionIndex: 0,
+      currentAnswerId: 0,
+    })),
   incrementScore: () =>
     set((state) => ({
       score: state.score + 1,
     })),
-  selectAnswer: (answerIndex) =>
-    set(() => ({ currentAnswerIndex: answerIndex })),
+  selectAnswer: (answerId) => set(() => ({ currentAnswerId: answerId })),
   nextQuestion: () =>
     set((state) => ({
-      currentAnswerIndex: null,
+      currentAnswerId: null,
       currentQuestionIndex: state.currentQuestionIndex + 1,
     })),
   initQuestions: (questions: Question[]) =>
     set(() => ({
       questions,
       currentQuestionIndex: 0,
-      currentAnswerIndex: null,
+      currentAnswerId: null,
     })),
   isLastQuestion: () => {
     const { currentQuestionIndex, questions } = get()
@@ -32,11 +40,12 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
     )
   },
   isCorrectAnswer: () => {
-    const { currentQuestionIndex, questions, currentAnswerIndex } = get()
+    const { currentQuestionIndex, questions, currentAnswerId } = get()
 
-    return (
-      currentAnswerIndex !== null &&
-      questions[currentQuestionIndex].answers[currentAnswerIndex].is_correct
-    )
+    if (currentAnswerId === null) {
+      return false
+    }
+
+    return questions[currentQuestionIndex].answers[currentAnswerId].is_correct
   },
 }))

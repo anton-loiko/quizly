@@ -9,7 +9,7 @@ import { useAppStore } from "../../../../app/App.store"
 export const QuizFooter: React.FC = () => {
   const navigate = useNavigate()
   const {
-    currentAnswerIndex,
+    currentAnswerId,
     isCorrectAnswer,
     incrementScore,
     nextQuestion,
@@ -19,23 +19,27 @@ export const QuizFooter: React.FC = () => {
 
   const lastQuestion = isLastQuestion()
 
-  const handleNext = useCallback(() => {
+  const reward = useCallback(() => {
     if (isCorrectAnswer()) {
       incrementScore()
     }
+  }, [incrementScore, isCorrectAnswer])
 
+  const handleNext = useCallback(() => {
+    reward()
     nextQuestion()
-  }, [incrementScore, isCorrectAnswer, nextQuestion])
+  }, [nextQuestion, reward])
 
   const handleDone = useCallback(() => {
+    reward()
     stop()
     navigate(PathRoutesEnum.QUIZ_FINAL)
-  }, [navigate, stop])
+  }, [navigate, stop, reward])
 
   return (
     <footer className={styles.footer}>
       <Button
-        disabled={currentAnswerIndex === null}
+        disabled={currentAnswerId === null}
         onClick={lastQuestion ? handleDone : handleNext}>
         {lastQuestion ? "Done" : "Answer"}
       </Button>

@@ -30,7 +30,7 @@ const createWhenCallback =
 export const Quiz: React.FC = () => {
   const { topics } = useProfileStore()
   const { isGameStarted } = useAppStore()
-  const { initQuestions, questions } = useQuizStore()
+  const { initQuestions, resetState, questions } = useQuizStore()
   const { data, loading } = useQuizQuestionsRequest(topics)
 
   usePromptNavigate({
@@ -38,6 +38,10 @@ export const Quiz: React.FC = () => {
     message:
       "Are you sure you want to leave the page? \nYour points will not be saved.",
   })
+
+  useEffect(() => {
+    resetState()
+  }, [resetState])
 
   useEffect(() => {
     initQuestions(shuffleArray(data))

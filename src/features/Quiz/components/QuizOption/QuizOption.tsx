@@ -14,8 +14,7 @@ type QuizOptionProps = Omit<ButtonProps, "onClick"> & {
 export const QuizOption: React.FC<QuizOptionProps> = ({ id, children }) => {
   const ref = useRef<HTMLButtonElement>(null)
 
-  const { selectAnswer, currentAnswerIndex, currentQuestionIndex } =
-    useQuizStore()
+  const { selectAnswer, currentAnswerId, currentQuestionIndex } = useQuizStore()
 
   const handleClick = useCallback(() => selectAnswer(id), [id, selectAnswer])
 
@@ -26,10 +25,7 @@ export const QuizOption: React.FC<QuizOptionProps> = ({ id, children }) => {
   return (
     <Button
       ref={ref}
-      className={cls(
-        styles.option,
-        currentAnswerIndex === id && styles.selected,
-      )}
+      className={cls(styles.option, currentAnswerId === id && styles.selected)}
       onClick={handleClick}>
       {children}
     </Button>

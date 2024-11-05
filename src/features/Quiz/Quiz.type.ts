@@ -1,4 +1,5 @@
 export type Answer = {
+  id: number
   text: string
   is_correct: boolean
 }
@@ -29,7 +30,7 @@ export type QuizStore = {
   score: number
   topics: Topic[]
   currentQuestionIndex: number
-  currentAnswerIndex: number | null
+  currentAnswerId: number | null
   questions: Question[]
   nextQuestion: () => void
   initQuestions: (questions: Question[]) => void
@@ -37,4 +38,5 @@ export type QuizStore = {
   selectAnswer: (index: number | null) => void
   isLastQuestion: () => boolean
   isCorrectAnswer: () => boolean
+  resetState: () => void
 }
