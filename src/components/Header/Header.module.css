@@ -3,12 +3,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.4rem 1.8rem;
-
+  background-color: var(--third-bg-color);
+  color: var(--second-color);
   box-shadow: 0 -10px 20px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 3rem;
 }
 
 .header a {
-  color: var(--main-color);
+  color: var(--second-color);
 }
 
 .logo {

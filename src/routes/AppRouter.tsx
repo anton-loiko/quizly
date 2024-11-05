@@ -17,6 +17,9 @@ import {
 import ErrorBoundary from "../components/ErrorBoundary"
 import { AppLoading } from "../components/AppLoading"
 import { PathRoutesEnum } from "./AppRouter.enum"
+import { QuizFinalPage } from "../pages/QuizFinalPage/QuizFinalPage"
+import { useAppStore } from "../app/App.store"
+import { useQuizStore } from "../features/Quiz/Quiz.store"
 
 const Root: React.FC = () => (
   <ErrorBoundary>
@@ -36,19 +39,38 @@ const rootLoader: LoaderFunction = () => {
   return null
 }
 
-const protectedLoader: LoaderFunction = ({ params }) => {
+const protectedLoader: LoaderFunction = ({ request }) => {
+  const { isGameStarted } = useAppStore.getState()
   const { username, topics } = useProfileStore.getState()
-  const unfilled = params.status === "unfilled"
+  const { pathname } = new URL(request.url)
 
-  if ((!username || !topics.length) && !unfilled) {
-    return redirect("/quiz/unfilled")
+  const unfilled = pathname === PathRoutesEnum.QUIZ_UNFILLED
+  const hasData = Boolean(username && topics.length)
+
+  if (!hasData) {
+    return unfilled ? null : redirect(PathRoutesEnum.QUIZ_UNFILLED)
   }
 
-  if (username && topics.length && unfilled) {
-    return redirect("/quiz")
+  if (unfilled && hasData) {
+    return redirect(PathRoutesEnum.QUIZ)
   }
 
-  return unfilled ? { unfilled } : null
+  if (!isGameStarted) {
+    return redirect(PathRoutesEnum.ROOT)
+  }
+
+  return null
+}
+
+const finalLoader: LoaderFunction = () => {
+  const { isLastQuestion } = useQuizStore.getState()
+  const { isGameStarted } = useAppStore.getState()
+
+  if (isLastQuestion() && !isGameStarted) {
+    return null
+  }
+
+  return redirect("/")
 }
 
 const router = createBrowserRouter([
@@ -63,13 +85,21 @@ const router = createBrowserRouter([
       },
       {
         path: PathRoutesEnum.QUIZ,
-        Component: QuizPage,
-        loader: protectedLoader,
         children: [
           {
-            path: ":status",
+            index: true,
             Component: QuizPage,
             loader: protectedLoader,
+          },
+          {
+            path: PathRoutesEnum.QUIZ_UNFILLED,
+            Component: QuizPage,
+            loader: protectedLoader,
+          },
+          {
+            path: PathRoutesEnum.QUIZ_FINAL,
+            Component: QuizFinalPage,
+            loader: finalLoader,
           },
         ],
       },

@@ -9,6 +9,8 @@
 
   /* Color variables: */
   --main-bg-color: #c1f1f4;
+  --second-bg-color: #fff6ec;
+  --third-bg-color: #21888e;
 
   /* Typo: */
   --typo-body-color: #262626;
@@ -17,6 +19,8 @@
 
   --main-color: #21888e;
   --second-color: #fff6ec;
+  --third-color: #c1f1f4;
+
   --rem: 16px;
 }
 

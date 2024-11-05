@@ -9,8 +9,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 2.2rem;
-  margin-bottom: 2.4rem;
-  /* flex-flow: wrap; */
+  margin: 2.4rem 0;
 }
 
 .promo_wrapper {
@@ -23,8 +22,8 @@
   font-size: 1.2rem;
   text-align: center;
   padding: 1.4rem 3rem;
-  color: var(--main-bg-color);
-  background: var(--main-color);
+  color: var(--third-color);
+  background: var(--third-bg-color);
   border-bottom-left-radius: 60px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;

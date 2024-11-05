@@ -27,7 +27,9 @@ class RequestClass {
             if (typeof by === "string") {
               result = data.filter((value) => value.topic === by)
             } else if (Array.isArray(by)) {
-              result = data.filter((value) => by.includes(value.topic as Topic))
+              result = data.filter((value) =>
+                by.includes(value.topic.toLowerCase() as Topic),
+              )
             } else {
               result = data
             }

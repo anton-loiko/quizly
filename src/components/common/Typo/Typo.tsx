@@ -1,4 +1,4 @@
-import { createElement } from "react"
+import { createElement, forwardRef } from "react"
 
 import { cls } from "../../../utils/classnames"
 import styles from "./Typo.module.css"
@@ -10,40 +10,46 @@ type TypoComponent = keyof Pick<
 type TypoVariant = "body" | "body2" | "title" | "title3" | "label"
 type TypoColor = "default" | "main"
 
-type TypoProps<P = object> = React.PropsWithChildren<
-  PropsWithClassName<{
-    component?: TypoComponent
-    variant?: TypoVariant
-    color?: TypoColor
-    bold?: boolean
-    center?: boolean
-  }>
-> &
-  P
+type TypoProps<P = object> = P &
+  React.PropsWithChildren<
+    PropsWithClassName<{
+      component?: TypoComponent
+      variant?: TypoVariant
+      color?: TypoColor
+      bold?: boolean
+      center?: boolean
+    }>
+  >
 
 // A small example of a component with typography
-export const Typo: React.FC<TypoProps> = ({
-  bold,
-  center,
-  children,
-  className,
-  color = "default",
-  component = "p",
-  variant = "body",
-  ...props
-}) =>
-  createElement(
-    component,
+export const Typo = forwardRef(
+  (
     {
-      className: cls(
-        styles.root,
-        styles[variant],
-        styles[`color-${color}`],
-        bold && styles.bold,
-        center && styles.center,
-        className,
-      ),
-      ...props,
-    },
-    children,
-  )
+      bold,
+      center,
+      children,
+      className,
+      color = "default",
+      component = "p",
+      variant = "body",
+      ...props
+    }: TypoProps,
+    ref,
+  ) =>
+    createElement(
+      component,
+      {
+        className: cls(
+          styles.root,
+          styles[variant],
+          styles[`color-${color}`],
+          bold && styles.bold,
+          center && styles.center,
+          className,
+        ),
+        ref,
+        ...props,
+      },
+      children,
+    ),
+)

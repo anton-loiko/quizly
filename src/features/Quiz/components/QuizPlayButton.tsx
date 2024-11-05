@@ -4,11 +4,15 @@ import { useAppStore } from "../../../app/App.store"
 import { useProfileStore } from "../../Profile/Profile.store"
 import { PathRoutesEnum } from "../../../routes/AppRouter.enum"
 
-type QuizPlayButton = PropsWithClassName<{ canDisabled?: boolean }>
+type QuizPlayButton = PropsWithClassName<{
+  canDisabled?: boolean
+  submitLabel?: string
+}>
 
 export const QuizPlayButton: React.FC<QuizPlayButton> = ({
   canDisabled,
   className,
+  submitLabel = "Play",
 }) => {
   const navigate = useNavigate()
   const appStore = useAppStore()
@@ -26,7 +30,7 @@ export const QuizPlayButton: React.FC<QuizPlayButton> = ({
 
   return (
     <Button className={className} disabled={disabled} onClick={handleClick}>
-      Play
+      {submitLabel}
     </Button>
   )
 }

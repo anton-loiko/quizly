@@ -31,11 +31,11 @@
 }
 
 input:checked + .slider {
-  background-color: var(--main-color);
+  background-color: var(--third-bg-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--main-color);
+  box-shadow: 0 0 1px var(--third-bg-color);
 }
 
 input:checked + .slider:before {

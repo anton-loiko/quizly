@@ -10,6 +10,7 @@ type ProfileFormProps = PropsWithClassName<{
   name: string
   options: Topic[]
   topics: Topic[]
+  loading?: boolean
   onNameChange: (value: string) => void
   onSelect: (value: Topic) => void
   onUnselect: (value: Topic) => void
@@ -20,6 +21,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   name,
   topics,
   options,
+  loading,
   onUnselect,
   onNameChange,
   onSelect,
@@ -79,9 +81,15 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
           ))}
         </ul>
 
-        {!optionsMemoized.length && (
-          <Typo variant='body2' bold center>
+        {!optionsMemoized.length && !loading && (
+          <Typo variant='body' bold center>
             The list of "Topics" is not yet ready
+          </Typo>
+        )}
+
+        {!optionsMemoized.length && loading && (
+          <Typo variant='body' bold center>
+            Loading...
           </Typo>
         )}
       </Box>

@@ -1,7 +1,3 @@
-export type ProtectedQuizLoaderData = {
-  unfilled: boolean
-}
-
 export type Answer = {
   text: string
   is_correct: boolean
@@ -9,14 +5,13 @@ export type Answer = {
 
 export type Question = {
   question: string
-  answers: string[]
+  answers: Answer[]
 }
 
 export type QuestionData = {
   topic: Topic
   questions: Question[]
 }
-export type QuestionNormalized = Record<Topic, Question[]>
 
 export type Topic =
   | "history"
@@ -31,8 +26,15 @@ export type Topic =
   | "sports"
 
 export type QuizStore = {
+  score: number
   topics: Topic[]
   currentQuestionIndex: number
-  questionsList?: QuestionNormalized
+  currentAnswerIndex: number | null
+  questions: Question[]
   nextQuestion: () => void
+  initQuestions: (questions: Question[]) => void
+  incrementScore: () => void
+  selectAnswer: (index: number | null) => void
+  isLastQuestion: () => boolean
+  isCorrectAnswer: () => boolean
 }
