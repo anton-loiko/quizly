@@ -36,9 +36,11 @@ export const QuizQuestion: React.FC = () => {
       </Typo>
 
       <ul className={styles.list}>
-        {question.answers.map((option) => (
+        {question.answers.map((option, index) => (
           <li className={styles.item} key={option.id}>
-            <QuizOption id={option.id}>{option.text}</QuizOption>
+            <QuizOption id={option.id} index={index}>
+              {option.text}
+            </QuizOption>
           </li>
         ))}
       </ul>

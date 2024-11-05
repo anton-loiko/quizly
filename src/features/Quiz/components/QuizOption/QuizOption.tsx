@@ -9,9 +9,14 @@ import { fadeIn } from "../../../../animations/fade"
 
 type QuizOptionProps = Omit<ButtonProps, "onClick"> & {
   id: number
+  index: number
 }
 
-export const QuizOption: React.FC<QuizOptionProps> = ({ id, children }) => {
+export const QuizOption: React.FC<QuizOptionProps> = ({
+  id,
+  index,
+  children,
+}) => {
   const ref = useRef<HTMLButtonElement>(null)
 
   const { selectAnswer, currentAnswerId, currentQuestionIndex } = useQuizStore()
@@ -19,7 +24,7 @@ export const QuizOption: React.FC<QuizOptionProps> = ({ id, children }) => {
   const handleClick = useCallback(() => selectAnswer(id), [id, selectAnswer])
 
   useGSAP(() => {
-    fadeIn(ref.current, 1, 1 + id / 3)
+    fadeIn(ref.current, 1, index / 10)
   }, [currentQuestionIndex])
 
   return (
