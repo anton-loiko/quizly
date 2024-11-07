@@ -49,3 +49,7 @@
 .root.color-main {
   color: var(--main-color);
 }
+
+.root.color-second {
+  color: var(--second-color);
+}

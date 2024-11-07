@@ -1,49 +1,40 @@
 import { useGSAP } from "@gsap/react"
 import styles from "./QuizQuestion.module.css"
-import { useMemo, useRef } from "react"
+import { useRef } from "react"
 import { slideIn } from "../../../../animations/slideIn"
 import { useQuizStore } from "../../Quiz.store"
-import { QuizOption } from "../QuizOption"
 import { Typo } from "../../../../components/common/Typo"
-import { shuffleArray } from "../../../../utils/array"
+import { QuizAnswerList } from "../QuizAnswerList"
+import { QuizImg } from "../QuizImg"
 
 export const QuizQuestion: React.FC = () => {
-  const { currentQuestionIndex, questions } = useQuizStore()
+  const question = useQuizStore(
+    (state) => state.questions[state.currentQuestionIndex],
+  )
   const ref = useRef<HTMLHeadingElement>(null)
 
   useGSAP(() => {
     slideIn(ref.current, 3)
-  }, [currentQuestionIndex])
-
-  const question = useMemo(() => {
-    const { answers: questionAnswers, question: questionTitle } =
-      questions[currentQuestionIndex]
-
-    return {
-      question: questionTitle,
-      answers: shuffleArray(questionAnswers),
-    }
-  }, [currentQuestionIndex, questions])
+  }, [question])
 
   if (!question) {
     return null
   }
 
   return (
-    <>
-      <Typo ref={ref} component='h3' variant='title3' color='main' center>
+    <div className={styles.root}>
+      <Typo
+        className={styles.question}
+        ref={ref}
+        component='h3'
+        variant='title'
+        color='second'>
         {question.question}
       </Typo>
 
-      <ul className={styles.list}>
-        {question.answers.map((option, index) => (
-          <li className={styles.item} key={option.id}>
-            <QuizOption id={option.id} index={index}>
-              {option.text}
-            </QuizOption>
-          </li>
-        ))}
-      </ul>
-    </>
+      <QuizImg className={styles.img} questionId={question.id} />
+
+      <QuizAnswerList className={styles.answers} />
+    </div>
   )
 }

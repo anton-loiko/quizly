@@ -24,14 +24,10 @@
 
 .progress::-webkit-progress-value {
   background-image: -webkit-linear-gradient(
-      135deg,
-      transparent,
-      transparent 33%,
-      rgba(0, 0, 0, 0.1) 33%,
-      rgba(0, 0, 0, 0.1) 66%,
-      transparent 66%
+      top,
+      rgba(255, 255, 255, 0.25),
+      rgba(0, 0, 0, 0.2)
     ),
-    -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
     -webkit-linear-gradient(left, #09c, #ff0);
 
   border-radius: 2px;

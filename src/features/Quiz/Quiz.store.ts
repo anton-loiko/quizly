@@ -42,10 +42,14 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
   isCorrectAnswer: () => {
     const { currentQuestionIndex, questions, currentAnswerId } = get()
 
-    if (currentAnswerId === null) {
+    const answers = questions[currentQuestionIndex].answers
+
+    if (currentAnswerId === null || !answers?.length) {
       return false
     }
 
-    return questions[currentQuestionIndex].answers[currentAnswerId].is_correct
+    return Boolean(
+      answers.find((item) => item.id === currentAnswerId)?.is_correct,
+    )
   },
 }))

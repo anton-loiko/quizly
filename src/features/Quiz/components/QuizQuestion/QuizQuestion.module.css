@@ -1,16 +1,66 @@
-.list {
+.root {
+  padding: 0 1.2rem;
   width: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 2rem 2.5rem 0;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "question img answers";
+  grid-template-columns: 30rem 1fr 25rem;
+  grid-template-rows: 1fr;
   align-items: center;
-  row-gap: 1.5rem;
 }
 
-.item {
-  width: 100%;
-  display: inline-flex;
-  max-width: 500px;
+[class].question {
+  grid-area: question;
+  font-size: 4.4rem;
+}
+
+.img {
+  grid-area: img;
+}
+
+.answers {
+  grid-area: answers;
+  grid-row-start: span;
+}
+
+@media screen and (max-width: 1200px) {
+  .root {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: minmax(200px, 300px) repeat(2, 200px);
+  }
+
+  .img {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .answers {
+    grid-column: 1;
+    grid-row: 2 / 3;
+  }
+
+  [class].question {
+    font-size: 2.2rem;
+    padding: 0 1rem;
+    grid-column: 1;
+    grid-row: 0;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .root {
+    grid-template-areas:
+      "question"
+      "img"
+      "answers";
+    grid-template-rows: 10rem 1fr 15rem;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-height: 800px) and (max-width: 1200px) {
+  .root {
+    grid-template-rows: repeat(2, 200px) 14vh;
+  }
 }

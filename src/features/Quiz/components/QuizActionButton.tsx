@@ -1,12 +1,13 @@
 import { useCallback } from "react"
-import { Button } from "../../../../components/common/Button"
-import { useQuizStore } from "../../Quiz.store"
-import styles from "./QuizFooter.module.css"
+import { Button } from "../../../components/common/Button"
+import { useQuizStore } from "../Quiz.store"
 import { useNavigate } from "react-router-dom"
-import { PathRoutesEnum } from "../../../../routes/AppRouter.enum"
-import { useAppStore } from "../../../../app/App.store"
+import { PathRoutesEnum } from "../../../routes/AppRouter.enum"
+import { useAppStore } from "../../../app/App.store"
 
-export const QuizFooter: React.FC = () => {
+export const QuizActionButton: React.FC<PropsWithClassName> = ({
+  className,
+}) => {
   const navigate = useNavigate()
   const {
     currentAnswerId,
@@ -37,12 +38,11 @@ export const QuizFooter: React.FC = () => {
   }, [navigate, stop, reward])
 
   return (
-    <footer className={styles.footer}>
-      <Button
-        disabled={currentAnswerId === null}
-        onClick={lastQuestion ? handleDone : handleNext}>
-        {lastQuestion ? "Done" : "Answer"}
-      </Button>
-    </footer>
+    <Button
+      className={className}
+      disabled={currentAnswerId === null}
+      onClick={lastQuestion ? handleDone : handleNext}>
+      {lastQuestion ? "Done" : "Next"}
+    </Button>
   )
 }

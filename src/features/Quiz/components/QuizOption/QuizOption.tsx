@@ -6,6 +6,7 @@ import styles from "./QuizOption.module.css"
 import { useQuizStore } from "../../Quiz.store"
 import { cls } from "../../../../utils/classnames"
 import { fadeIn } from "../../../../animations/fade"
+import { Typo } from "../../../../components/common/Typo"
 
 type QuizOptionProps = Omit<ButtonProps, "onClick"> & {
   id: number
@@ -32,7 +33,14 @@ export const QuizOption: React.FC<QuizOptionProps> = ({
       ref={ref}
       className={cls(styles.option, currentAnswerId === id && styles.selected)}
       onClick={handleClick}>
-      {children}
+      <div className={styles.dot}>{index + 1}</div>
+      <Typo
+        component='b'
+        variant='label'
+        color='second'
+        className={styles.label}>
+        {children}
+      </Typo>
     </Button>
   )
 }

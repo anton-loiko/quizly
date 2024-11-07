@@ -24,7 +24,7 @@
   cursor: not-allowed;
   background: rgb(182, 182, 182);
   outline: none;
-  border: none;
+  border-color: transparent;
   color: var(--second-color);
 }
 

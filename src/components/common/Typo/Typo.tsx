@@ -8,7 +8,7 @@ type TypoComponent = keyof Pick<
   "label" | "b" | "p" | "h1" | "h3"
 >
 type TypoVariant = "body" | "body2" | "title" | "title3" | "label"
-type TypoColor = "default" | "main"
+type TypoColor = "default" | "main" | "second"
 
 type TypoProps<P = object> = P &
   React.PropsWithChildren<

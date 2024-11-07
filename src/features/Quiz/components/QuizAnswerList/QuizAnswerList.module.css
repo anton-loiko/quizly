@@ -1,0 +1,32 @@
+.list {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.item {
+  width: 100%;
+  display: inline-flex;
+}
+
+.item.action {
+  padding-top: 0.8rem;
+  padding-left: 6rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .list {
+    padding-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .list {
+    padding: 0;
+    row-gap: 0;
+  }
+}

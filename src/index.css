@@ -8,18 +8,18 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Color variables: */
-  --main-bg-color: #c1f1f4;
+  --main-bg-color: #8ad3e7;
   --second-bg-color: #fff6ec;
-  --third-bg-color: #21888e;
+  --third-bg-color: #004d80;
 
   /* Typo: */
   --typo-body-color: #262626;
   --typo-title-color: #343434;
   --typo-label-color: #606060;
 
-  --main-color: #21888e;
+  --main-color: #004d80;
   --second-color: #fff6ec;
-  --third-color: #c1f1f4;
+  --third-color: #8ad3e7;
 
   --rem: 16px;
 }

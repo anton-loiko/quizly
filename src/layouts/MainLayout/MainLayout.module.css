@@ -4,7 +4,7 @@
     "header"
     "main"
     "footer";
-  grid-template-rows: 88px minmax(auto, 1fr) minmax(30px, auto);
+  grid-template-rows: 88px minmax(auto, 1fr) auto;
   grid-template-columns: 1fr;
   height: 100vh;
   height: 100lvh;
@@ -24,4 +24,10 @@
 
 .footer {
   grid-area: footer;
+}
+
+.main.game_mod {
+  margin: 0;
+  padding: 0;
+  max-width: unset;
 }

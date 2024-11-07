@@ -3,6 +3,7 @@ import { ReactComponent as StarIcon } from "../../../../assets/star.svg"
 import { useProfileStore } from "../../Profile.store"
 import styles from "./ProfileInfo.module.css"
 import { PathRoutesEnum } from "../../../../routes/AppRouter.enum"
+import { ProfileScore } from "../ProfileScore"
 
 export const ProfileInfo = () => {
   const { username, score } = useProfileStore()
@@ -15,7 +16,7 @@ export const ProfileInfo = () => {
       <span>{username || "Hey, Buddy"}</span>
       <span>|</span>
       <StarIcon className={styles.icon} />
-      {score}
+      <ProfileScore score={score} />
     </div>
   )
 }

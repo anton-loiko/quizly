@@ -1,12 +1,19 @@
 .option {
+  display: flex;
+  align-items: center;
   line-height: 1.5;
   font-size: 1.2rem;
   text-align: center;
-  padding: 1.4rem 3rem;
-  color: var(--third-color);
-  background: var(--third-bg-color);
+  background: none;
+  border-color: transparent !important;
   border-radius: 6px;
   flex: 1 0;
+  gap: 2rem;
+}
+
+button.option:focus:not(:disabled),
+button.option:focus-visible:not(:disabled) {
+  outline: none;
 }
 
 .option:hover {
@@ -18,9 +25,6 @@
 }
 
 .option.selected {
-  background-color: var(--second-bg-color);
-  color: var(--main-color);
-  border: 1px solid var(--main-color);
   pointer-events: none;
 }
 
@@ -28,4 +32,44 @@
   pointer-events: none;
   background: var(--third-bg-color);
   opacity: 0.75;
+}
+
+.dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(114, 114, 116, 0.4);
+  color: var(--second-color);
+  box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 60ms ease-in-out 50ms;
+  flex-shrink: 0;
+}
+
+.label {
+  text-align: left;
+}
+
+.selected .dot {
+  background: var(--third-bg-color);
+  filter: none;
+}
+
+.option:hover .dot {
+  background: var(--third-bg-color);
+  opacity: 0.6;
+}
+
+.option:active .dot {
+  background: var(--third-bg-color);
+  opacity: 1;
+}
+
+@media screen and (max-width: 769px) {
+  .option {
+    padding: 1rem 1rem 0;
+  }
 }

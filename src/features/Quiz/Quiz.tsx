@@ -3,7 +3,6 @@ import { useQuizStore } from "./Quiz.store"
 import { useQuizQuestionsRequest } from "./Quiz.request"
 import styles from "./Quiz.module.css"
 import { QuizProgress } from "./components/QuizProgress"
-import { QuizFooter } from "./components/QuizFooter"
 import { useProfileStore } from "../Profile/Profile.store"
 import { QuizQuestion } from "./components/QuizQuestion"
 import { AppLoading } from "../../components/AppLoading"
@@ -55,7 +54,6 @@ export const Quiz: React.FC = () => {
     <section className={styles.root}>
       <QuizProgress />
       <QuizQuestion />
-      <QuizFooter />
     </section>
   )
 }
