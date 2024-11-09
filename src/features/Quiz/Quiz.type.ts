@@ -33,6 +33,7 @@ export type QuizStore = {
   currentQuestionIndex: number
   currentAnswerId: number | null
   questions: Question[]
+  history: Record<number, number | null>
   nextQuestion: () => void
   initQuestions: (questions: Question[]) => void
   incrementScore: () => void

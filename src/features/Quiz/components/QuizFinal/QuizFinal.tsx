@@ -7,6 +7,8 @@ import styles from "./QuizFinal.module.css"
 
 import { ReactComponent as StarIcon } from "../../../../assets/star.svg"
 import { ReactComponent as BadgeReward } from "../../../../assets/badge-reward.svg"
+import { QuizFinalDetails } from "../QuizFinalDetails"
+import { useCallback, useState } from "react"
 
 type QuizFinalVariant = "victory" | "defeat"
 
@@ -65,7 +67,21 @@ const finalComponents = new Map<
 ])
 
 export const QuizFinal = ({ variant, ...rest }: QuizFinalProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = useCallback(() => setIsOpen((prev) => !prev), [])
+
   const Component = finalComponents.get(variant)
 
-  return <Box className={styles.root}>{Component ? Component(rest) : null}</Box>
+  return (
+    <Box className={styles.root}>
+      <Button onClick={toggle}>{isOpen ? "Hide" : "Show"} details</Button>
+
+      {isOpen ? (
+        <QuizFinalDetails />
+      ) : (
+        <>{Component ? Component(rest) : null}</>
+      )}
+    </Box>
+  )
 }

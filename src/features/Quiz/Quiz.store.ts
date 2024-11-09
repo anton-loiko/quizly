@@ -7,6 +7,7 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
   topics: [],
   currentQuestionIndex: 0,
   currentAnswerId: 0,
+  history: {},
   resetState: () =>
     set((state) => ({
       ...state,
@@ -22,10 +23,19 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
     })),
   selectAnswer: (answerId) => set(() => ({ currentAnswerId: answerId })),
   nextQuestion: () =>
-    set((state) => ({
-      currentAnswerId: null,
-      currentQuestionIndex: state.currentQuestionIndex + 1,
-    })),
+    set((state) => {
+      const { history, currentQuestionIndex, questions, currentAnswerId } =
+        state
+
+      return {
+        history: {
+          ...history,
+          [questions[currentQuestionIndex].id]: currentAnswerId,
+        },
+        currentAnswerId: null,
+        currentQuestionIndex: currentQuestionIndex + 1,
+      }
+    }),
   initQuestions: (questions: Question[]) =>
     set(() => ({
       questions,

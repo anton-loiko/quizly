@@ -32,10 +32,10 @@ export const QuizActionButton: React.FC<PropsWithClassName> = ({
   }, [nextQuestion, reward])
 
   const handleDone = useCallback(() => {
-    reward()
+    handleNext()
     stop()
     navigate(PathRoutesEnum.QUIZ_FINAL)
-  }, [navigate, stop, reward])
+  }, [navigate, stop, handleNext])
 
   return (
     <Button
